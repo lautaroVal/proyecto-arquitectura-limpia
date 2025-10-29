@@ -1,0 +1,78 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+generator client {
+  provider = "prisma-client-js"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+enum UserRol {
+  ADMIN
+  CLIENT
+}
+
+enum ProductType {
+  BURGER
+  DRINK
+  ACOMPANIMENT
+}
+
+enum OrderState {
+  PENDING
+  INPREPARATION
+  READY
+  DELIVERED
+  CANCELED
+}
+
+model User {
+  id           String   @id 
+  name         String
+  email        String   @unique
+  passwordHash String
+  rol          UserRol
+  active       Boolean  @default(true)
+
+  orders       Order[]  @relation("UserOrders")
+}
+
+model Product {
+  id         String       @id 
+  name       String
+  price      Float
+  available  Boolean       @default(true)
+  type       ProductType
+
+  items      ItemOrder[]   @relation("ProductItems")
+}
+
+model Order {
+  id        String       @id 
+  clientId  String
+  total     Float
+  state     OrderState    @default(PENDING)
+  date      DateTime      @default(now())
+
+  client    User          @relation("UserOrders", fields: [clientId], references: [id])
+  items     ItemOrder[]   @relation("OrderItems")
+}
+
+model ItemOrder {
+  id         String    @id @default(uuid())
+  productId  String
+  orderId    String
+  name       String
+  quantity   Int
+  unitPrice  Float
+  subtotal   Float
+
+  product    Product   @relation("ProductItems", fields: [productId], references: [id])
+  order      Order     @relation("OrderItems", fields: [orderId], references: [id])
+}
