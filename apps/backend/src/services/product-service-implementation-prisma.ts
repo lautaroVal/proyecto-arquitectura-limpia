@@ -22,6 +22,7 @@ export class ProductServiceImplementationPrisma implements ProductService {
         price: product.price,
         available: product.available,
         type: product.type,
+        image: product.image,
       },
     });
   }

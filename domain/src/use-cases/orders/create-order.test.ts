@@ -18,8 +18,8 @@ class UserRepoMock implements IUserRepo {
 
 class ProductRepoMock implements IProductRepo {
   private products: Product[] = [
-    { id: "p1", name: "Hamburguer", price: 500, available: true, type: "BURGER" },
-    { id: "p2", name: "Fries", price: 200, available: true, type: "ACOMPANIMENT" },
+    { id: "p1", name: "Hamburguer", price: 500, available: true, type: "BURGER",image: "imge.jpg" },
+    { id: "p2", name: "Fries", price: 200, available: true, type: "ACOMPANIMENT",image: "image.jpg" },
   ];
   async getById(id: string) {
     return this.products.find(p => p.id === id) || null;

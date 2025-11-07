@@ -49,6 +49,7 @@ model Product {
   price      Float
   available  Boolean       @default(true)
   type       ProductType
+  image      String
 
   items      ItemOrder[]   @relation("ProductItems")
 }

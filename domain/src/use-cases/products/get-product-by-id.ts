@@ -20,6 +20,7 @@ export async function getProductById({
         name: product.name,
         price: product.price,
         available: product.available,
-        type: product.type
+        type: product.type,
+        image: product.image
     };
 }

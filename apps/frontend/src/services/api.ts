@@ -14,13 +14,13 @@ export async function getProducts(): Promise<Product[]> {
     return data;
   } catch (error) {
     console.error("❌ Error en getProducts:", error);
-    return [];
+    throw error;
   }
 }
 
-export async function getProductById(): Promise<Product | null> {
+export async function getProductById(id: string): Promise<Product | null> {
   try {
-    const response = await fetch(`${API_URL}/api/products/getProductById`);
+    const response = await fetch(`${API_URL}/api/products/getProductById/${id}`);
 
     if (!response.ok) {
       throw new Error(`Error al obtener el producto: ${response.statusText}`);

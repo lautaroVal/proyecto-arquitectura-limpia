@@ -9,14 +9,16 @@ const dataProduct = [
         name: "Hamburguer",
         price: 200,
         available: true,
-        type: ProductType.BURGER
+        type: ProductType.BURGER,
+        image: "https://example.com/images/hamburguesa.jpg",
     },
     {
         id: "2",
         name: "Coca-cola",
         price: 50,
         available: true,
-        type: ProductType.DRINK
+        type: ProductType.DRINK,
+        image: "https://example.com/images/hamburguesa.jpg",
     }
 ]
 
@@ -33,7 +35,8 @@ describe("GetProduct", () => {
             name: "Hamburguer",
             price: 200,
             available: true,
-            type: ProductType.BURGER
+            type: ProductType.BURGER,
+            image: "https://example.com/images/hamburguesa.jpg",
         });
     });
 

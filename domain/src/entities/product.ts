@@ -11,5 +11,6 @@ export interface Product {
     name: string,
     price: number,
     available: boolean,
-    type: ProductType
+    type: ProductType,
+    image: string
 }

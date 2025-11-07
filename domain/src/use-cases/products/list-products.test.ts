@@ -10,6 +10,7 @@ const mockProducts = [
         price: 200,
         available: true,
         type: ProductType.BURGER,
+        image: "https://example.com/images/hamburguesa.jpg",
     },
     {
         id: "2",
@@ -17,6 +18,7 @@ const mockProducts = [
         price: 50,
         available: true,
         type: ProductType.DRINK,
+        image: "https://example.com/images/hamburguesa.jpg",
     },
 ];
 
@@ -50,6 +52,7 @@ describe("ListProducts", () => {
             expect(p).toHaveProperty("price");
             expect(p).toHaveProperty("available");
             expect(p).toHaveProperty("type");
+            expect(p).toHaveProperty("image");
         });
     });
 });

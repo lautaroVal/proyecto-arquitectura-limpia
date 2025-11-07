@@ -9,6 +9,7 @@ interface CreateProductDTO {
     price: number;
     available: boolean;
     type: ProductType;
+    image: string;
   };
 }
 
@@ -23,6 +24,8 @@ export async function createProduct({ dependencies, payload }: CreateProductDTO)
     throw new Error("The price should be greater than 0");
   }
 
+  if (!payload.image) throw new Error("The product image is mandatory.");
+
   const existing = await productService.getById(payload.id);
   if (existing) {
     throw new Error(`There is already a product with id ${payload.id}`);
@@ -36,5 +39,6 @@ export async function createProduct({ dependencies, payload }: CreateProductDTO)
     price: payload.price,
     available: payload.available,
     type: payload.type,
+    image: payload.image
   };
 }

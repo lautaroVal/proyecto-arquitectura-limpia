@@ -4,7 +4,7 @@ import { ProductType } from "../../entities/product";
 import { MockedProductService } from "../../services/mocks/product-service.mocks";
 
 const initialProducts = [
-  { id: "1", name: "Hamburguer", price: 200, available: true, type: ProductType.BURGER },
+  { id: "1", name: "Hamburguer", price: 200, available: true, type: ProductType.BURGER, image: "https://example.com/images/hamburguesa.jpg"},
 ];
 
 describe("CreateProduct", () => {
@@ -19,6 +19,7 @@ describe("CreateProduct", () => {
         price: 50,
         available: true,
         type: ProductType.DRINK,
+        image: "https://example.com/images/hamburguesa.jpg",
       },
     });
 
@@ -41,6 +42,7 @@ describe("CreateProduct", () => {
           price: 300,
           available: true,
           type: ProductType.BURGER,
+          image: "https://example.com/images/hamburguesa.jpg",
         },
       })
     ).rejects.toThrow("There is already a product with id 1");
@@ -56,6 +58,7 @@ describe("CreateProduct", () => {
           price: 0,
           available: true,
           type: ProductType.DRINK,
+          image: "https://example.com/images/hamburguesa.jpg",
         },
       })
     ).rejects.toThrow("The price should be greater than 0");

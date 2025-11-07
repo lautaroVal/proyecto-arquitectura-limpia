@@ -23,10 +23,10 @@ export class ProductController {
 
     getProductById = async (req: Request, res: Response) => {
         try {
-            const { id } = req.body;
+            const { id } = req.params;
             const product = await getProductById({
                 dependencies: { productService: this.service },
-                payload: { id }
+                payload: { id: id! }
             });
             if (!product) return res.status(404).json({ message: "Product not found" });
             return res.status(200).json(product);

@@ -47,6 +47,7 @@ describe("UpdateProduct", () => {
             price: 1500,
             available: true,
             type: ProductType.BURGER,
+            image: "https://example.com/images/hamburguesa.jpg",
         },
     ];
 
