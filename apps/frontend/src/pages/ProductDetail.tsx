@@ -26,14 +26,14 @@ export default function ProductDetail() {
     return (
       <div className="flex flex-col justify-center items-center min-h-screen bg-[#f5f0e1] text-gray-700">
         <div className="animate-spin rounded-full h-16 w-16 border-b-4 border-[#bb4d00] mb-4"></div>
-        <p className="text-lg font-semibold">Cargando producto...</p>
+        <p data-testid="loading" className="text-lg font-semibold">Cargando producto...</p>
       </div>
     );
 
   if (error)
     return (
       <div className="flex flex-col justify-center items-center min-h-screen bg-[#f5f0e1] text-red-600">
-        <p className="text-lg font-semibold">{error}</p>
+        <p data-testid="error" className="text-lg font-semibold">{error}</p>
         <Link
           to="/"
           className="mt-4 text-[#bb4d00] hover:underline font-semibold"
@@ -68,18 +68,27 @@ export default function ProductDetail() {
           {product.name}
         </h1>
         <p className="text-lg text-gray-700 mb-4">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Tempore, explicabo natus harum iure iusto at omnis accusantium dolorum cupiditate accusamus expedita earum nam voluptates eos sapiente repellat repudiandae ducimus similique!
-        Iusto nam autem, praesentium mollitia perferendis inventore, explicabo et veniam aperiam voluptates earum dignissimos voluptatum atque quae ipsa deserunt nihil alias aspernatur quidem quisquam molestias rem magni culpa! Fugiat, expedita!
-        Repudiandae possimus iusto autem asperiores! Perferendis atque facilis quaerat non corrupti explicabo cum praesentium, reprehenderit quos quis distinctio similique voluptatibus alias eligendi delectus. Sequi, exercitationem. Rem sunt magni id molestias?</p>
-        <p className="text-2xl font-semibold text-[#bb4d00] mb-6">
+          Iusto nam autem, praesentium mollitia perferendis inventore, explicabo et veniam aperiam voluptates earum dignissimos voluptatum atque quae ipsa deserunt nihil alias aspernatur quidem quisquam molestias rem magni culpa! Fugiat, expedita!
+          Repudiandae possimus iusto autem asperiores! Perferendis atque facilis quaerat non corrupti explicabo cum praesentium, reprehenderit quos quis distinctio similique voluptatibus alias eligendi delectus. Sequi, exercitationem. Rem sunt magni id molestias?</p>
+        <p data-testid="product-price" className="text-2xl font-semibold text-[#bb4d00] mb-6">
           ${product.price}
         </p>
 
-        <Link
-          to="/"
-          className="inline-block bg-[#ffc300] text-[#1e1e1e] font-bold py-2 px-6 rounded-full hover:bg-[#bb4d00] hover:text-white transition duration-300"
-        >
-          Volver al menú
-        </Link>
+        <div className="flex gap-5">
+          <Link
+            to="/"
+            className="inline-block bg-[#bb4d00] text-white font-bold py-2 px-6 rounded-full hover:text-[#1e1e1e] transition duration-300"
+          >
+            Volver al menú
+          </Link>
+          <button
+            data-testid="add-to-cart-button"
+            className="bg-[#ffc300] text-[#1e1e1e] font-bold py-2 px-6 rounded-full hover:text-white transition duration-300 cursor-pointer"
+            onClick={() => console.log("Producto agregado")}
+          >
+            Agregar al pedido
+          </button>
+        </div>
       </div>
     </div>
   );

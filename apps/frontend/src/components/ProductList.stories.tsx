@@ -3,6 +3,8 @@ import ProductList from "./ProductList";
 import { http, HttpResponse } from 'msw'
 import { mockProducts } from "../mocks/products.mock";
 import { MemoryRouter, Route, Routes } from "react-router-dom";
+import { expect, within, waitFor } from "storybook/test";
+
 
 const meta = {
   title: "Components/ProductList",
@@ -31,7 +33,16 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 
-export const Default: Story = {};
+export const Default: Story = {
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    await waitFor(() => {
+      expect(canvas.getByText(/Burger Clásica/i)).toBeInTheDocument();
+    });
+    const items = canvas.getAllByRole("img");
+    expect(items.length).toBe(3);
+  },
+};
 
 export const Empty: Story = {
   parameters: {
@@ -42,7 +53,15 @@ export const Empty: Story = {
         })
       ]
     }
-  }
+  },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    await waitFor(() => {
+      expect(
+        canvas.getByText(/no hay productos disponibles/i)
+      ).toBeInTheDocument();
+    });
+  },
 };
 
 export const Loading: Story = {
@@ -54,7 +73,11 @@ export const Loading: Story = {
         })
       ]
     }
-  }
+  },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    expect(canvas.getByText(/cargando/i)).toBeInTheDocument();
+  },
 };
 
 export const Error: Story = {
@@ -69,5 +92,14 @@ export const Error: Story = {
         })
       ]
     }
-  }
+  },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+
+    await waitFor(() => {
+      expect(
+        canvas.getByText(/verificá tu conexión/i)
+      ).toBeInTheDocument();
+    });
+  },
 };

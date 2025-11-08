@@ -18,12 +18,14 @@ export default function Header({ user }: HeaderProps) {
 
       <nav className="hidden md:flex items-center space-x-6 relative">
         <ul className="flex items-center space-x-6">
-          <li className="text-gray-300 hover:text-amber-500 transition duration-300 cursor-pointer">
-            <a href="/">Pedidos</a>
-          </li>
-          {user?.role === "ADMIN" && (
+
+          {user?.role === "ADMIN" ? (
             <li className="text-gray-300 hover:text-amber-500 transition duration-300 cursor-pointer">
               <a href="/admin/orders">Órdenes</a>
+            </li>
+          ) : (
+            <li className="text-gray-300 hover:text-amber-500 transition duration-300 cursor-pointer">
+              <a href="/">Pedidos</a>
             </li>
           )}
           <li className="text-gray-300 hover:text-amber-500 transition duration-300 cursor-pointer">
@@ -92,6 +94,6 @@ export default function Header({ user }: HeaderProps) {
 }
 
 
-  {/* <div className="md:hidden">
+{/* <div className="md:hidden">
       <button className="text-white">☰</button>
   </div> */}
