@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import { getProducts } from "../services/api";
-import type { Product } from "../types/Product";
+import { getProducts } from "../services/productApi";
+import type { Product } from "../../../../domain/dist/entities";
 import ProductCard from "./ProductCard";
 
 export default function ProductList() {

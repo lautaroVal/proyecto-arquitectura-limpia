@@ -22,7 +22,7 @@ describe("RegisterUser", () => {
     const result = await useCase.execute({
       name: "Lautaro",
       email: "lautaro@example.com",
-      passwordHash: "123456",
+      password: "123456",
     });
 
     expect(result.name).toBe("Lautaro");
@@ -63,7 +63,7 @@ describe("RegisterUser", () => {
       useCase.execute({
         name: "Lautaro",
         email: "exist@example.com",
-        passwordHash: "123",
+        password: "123",
       })
     ).rejects.toThrow("Email already registered");
     expect(mockRepo.findByEmail).toHaveBeenCalledWith("exist@example.com");

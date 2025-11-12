@@ -34,6 +34,13 @@ export default defineConfig({
         },
         setupFiles: ['.storybook/vitest.setup.ts']
       }
-    }]
+    }],
+    include: ["src/**/*.test.{ts,tsx}"],
+    exclude: [
+    'node_modules',
+    'dist',
+    '**/*.stories.*',
+    '**/.storybook/**'
+  ],
   }
 });

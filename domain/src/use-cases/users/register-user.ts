@@ -6,7 +6,7 @@ import { v4 as uuidv4 } from "uuid";
 interface RegisterUserDTO {
   name: string;
   email: string;
-  passwordHash: string;
+  password: string;
   rol?: userRol; 
 }
 
@@ -20,7 +20,7 @@ export class RegisterUser {
     const existingUser = await this.userRepo.findByEmail(request.email);
     if (existingUser) throw new Error("Email already registered");
 
-    const hashedPassword = await this.passwordHasher.hash(request.passwordHash);
+    const hashedPassword = await this.passwordHasher.hash(request.password);
 
     const newUser: User = {
       id: uuidv4(),

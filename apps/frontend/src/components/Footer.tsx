@@ -23,7 +23,7 @@ export default function Footer() {
             </li>
             <li>
               <a
-                href="/productos"
+                href="#products"
                 className="hover:text-[#ffc300] transition-colors duration-300"
               >
                 Productos
@@ -35,14 +35,6 @@ export default function Footer() {
                 className="hover:text-[#ffc300] transition-colors duration-300"
               >
                 Contacto
-              </a>
-            </li>
-            <li>
-              <a
-                href="/sobre-nosotros"
-                className="hover:text-[#ffc300] transition-colors duration-300"
-              >
-                Sobre nosotros
               </a>
             </li>
           </ul>

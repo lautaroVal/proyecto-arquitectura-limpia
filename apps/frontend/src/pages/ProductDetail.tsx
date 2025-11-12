@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
-import { getProductById } from "../services/api";
-import type { Product } from "../types/Product";
+import { getProductById } from "../services/productApi";
+import type { Product } from "../../../../domain/dist/entities/product";
 
 const API_URL = "http://localhost:3000/public";
 

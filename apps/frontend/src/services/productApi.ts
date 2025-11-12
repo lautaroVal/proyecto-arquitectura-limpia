@@ -1,4 +1,4 @@
-import type { Product } from "../types/Product";
+import type { Product } from "../../../../domain/dist/entities";
 
 const API_URL = "http://localhost:3000"; 
 
@@ -7,13 +7,13 @@ export async function getProducts(): Promise<Product[]> {
     const response = await fetch(`${API_URL}/api/products/listProducts`);
 
     if (!response.ok) {
-      throw new Error(`Error al obtener productos: ${response.statusText}`);
+      throw new Error(`Error retrieving products: ${response.statusText}`);
     }
 
     const data: Product[] = await response.json();
     return data;
   } catch (error) {
-    console.error("❌ Error en getProducts:", error);
+    console.error("❌ Error in getProducts:", error);
     throw error;
   }
 }
@@ -23,13 +23,13 @@ export async function getProductById(id: string): Promise<Product | null> {
     const response = await fetch(`${API_URL}/api/products/getProductById/${id}`);
 
     if (!response.ok) {
-      throw new Error(`Error al obtener el producto: ${response.statusText}`);
+      throw new Error(`Error obtaining the product: ${response.statusText}`);
     }
 
     const data: Product = await response.json();
     return data;
   } catch (error) {
-    console.error("❌ Error en getProductById:", error);
+    console.error("❌ Error in getProductById:", error);
     return null;
   }
 }

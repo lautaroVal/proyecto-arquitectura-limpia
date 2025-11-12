@@ -29,6 +29,8 @@ describe("CreateProduct", () => {
       price: 50,
       available: true,
       type: ProductType.DRINK,
+      image: "https://example.com/images/hamburguesa.jpg",
+
     });
   });
 
