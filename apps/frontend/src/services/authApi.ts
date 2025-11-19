@@ -1,6 +1,6 @@
 import type { userRol } from "../../../../domain/dist/entities";
 
-const API_URL = "http://localhost:3000/api/auth";
+const API_URL = "http://localhost:8080";
 
 export type AuthResponse = {
   token: string,
@@ -13,7 +13,7 @@ export type UserCredentials = { email: string; password: string };
 export type RegisterData = UserCredentials & { name: string };
 
 export async function loginUser(credentials: UserCredentials): Promise<AuthResponse> {
-  const response = await fetch(`${API_URL}/login`, {
+  const response = await fetch(`${API_URL}/api/auth/login`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(credentials),
@@ -28,7 +28,7 @@ export async function loginUser(credentials: UserCredentials): Promise<AuthRespo
 }
 
 export async function registerUser(data: RegisterData): Promise<void> {
-  const response = await fetch(`${API_URL}/register`, {
+  const response = await fetch(`${API_URL}/api/auth/register`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(data),

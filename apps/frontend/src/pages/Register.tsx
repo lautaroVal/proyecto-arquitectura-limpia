@@ -52,7 +52,7 @@ export default function Register() {
           onChange={(e) => setPassword(e.target.value)}
           required
         />
-        {message && <p className="text-sm text-amber-400">{message}</p>}
+        {message && <p className="text-sm text-lime-600">{message}</p>}
         <button
           type="submit"
           className="bg-amber-600 hover:bg-amber-500 p-2 rounded font-bold cursor-pointer"

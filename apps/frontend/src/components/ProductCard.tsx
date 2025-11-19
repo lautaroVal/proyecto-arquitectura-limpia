@@ -4,7 +4,7 @@ import type { Product } from "../../../../domain/dist/entities";
 interface ProductCardProps {
   product: Product;
 }
-const API_URL = "http://localhost:3000/public";
+const API_URL = "http://localhost:8080/public";
 
 export default function ProductCard({ product }: ProductCardProps) {
   return (

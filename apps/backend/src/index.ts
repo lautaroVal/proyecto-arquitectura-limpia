@@ -1,7 +1,7 @@
 import cors from "cors";
 import express from "express";
 import routes from './routes/index.js';
-import { PrismaClient } from "./generated/prisma";
+import { PrismaClient } from "../src/generated/prisma";
 import path from "path";
 
 
@@ -10,7 +10,7 @@ const PORT = process.env.PORT || 3000;
 
 app.use(
   cors({
-    origin: ["http://localhost:5173", "http://localhost:6006"]  ,
+    origin: ["http://localhost:5173", "http://localhost:6006", "http://localhost:8081"]  ,
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true
   })

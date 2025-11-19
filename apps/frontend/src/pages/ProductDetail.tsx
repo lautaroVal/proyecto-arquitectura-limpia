@@ -3,7 +3,7 @@ import { useParams, Link } from "react-router-dom";
 import { getProductById } from "../services/productApi";
 import type { Product } from "../../../../domain/dist/entities/product";
 
-const API_URL = "http://localhost:3000/public";
+const API_URL = "http://localhost:8080/public";
 
 export default function ProductDetail() {
   const { id } = useParams<{ id: string }>();
