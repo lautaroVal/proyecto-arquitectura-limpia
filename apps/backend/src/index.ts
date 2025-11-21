@@ -4,7 +4,6 @@ import routes from './routes/index.js';
 import { PrismaClient } from "../src/generated/prisma";
 import path from "path";
 
-
 export const app = express()
 const PORT = process.env.PORT || 3000;
 
@@ -21,6 +20,11 @@ app.use(routes);
 app.use("/public", express.static(path.join(__dirname, "../public")));
 
 export const prisma = new PrismaClient();
+async function init() {
+  await prisma.$connect();
+  console.log("DB connected");
+}
+init();
 
 app.listen(PORT, () => console.log(`Server Backend listening on https://localhost:${PORT}`))
 
