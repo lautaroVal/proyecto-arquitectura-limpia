@@ -10,8 +10,6 @@ services:
     env_file: ./apps/backend/.env
     ports: 
       - "8080:3000"
-    volumes: 
-      - clean-archit-project-api-storage:/app/apps/storage
     restart: unless-stopped
 
   frontend:
@@ -25,10 +23,3 @@ services:
     depends_on:
       - backend
     restart: unless-stopped
-
-volumes: 
-  clean-archit-project-api-storage:
-    driver: local
-
-
-
