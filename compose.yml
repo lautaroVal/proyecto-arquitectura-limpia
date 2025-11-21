@@ -1,25 +1,54 @@
 name: clean-archit-project
 
 services:
+  db:
+    image: postgres:16
+    container_name: clean-archit-project-db
+    restart: always
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: clean-arch
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
   backend:
     build:
-      dockerfile: api.dockerfile
       context: .
-    image: clean-archit-project-api:latest
+      dockerfile: api.dockerfile
     container_name: clean-archit-project-api
-    env_file: ./apps/backend/.env
-    ports: 
+    image: clean-archit-project-api:latest
+    depends_on:
+      - db
+    env_file:
+      - ./apps/backend/.env
+    ports:
       - "8080:3000"
+    networks:
+      - app_network
     restart: unless-stopped
 
   frontend:
     build:
-      dockerfile: web.dockerfile
       context: .
-    image: clean-archit-project-web:latest
+      dockerfile: web.dockerfile
     container_name: clean-archit-project-web
-    ports: 
-      - "8081:5173"
+    image: clean-archit-project-web:latest
     depends_on:
       - backend
+    ports:
+      - "8081:5173"
+    networks:
+      - app_network
     restart: unless-stopped
+
+volumes:
+  postgres_data:
+
+networks:
+  app_network:
+    driver: bridge
+
+
